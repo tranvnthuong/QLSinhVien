@@ -43,7 +43,7 @@ namespace QLSinhVien.Forms
                 {
                     int result = DB.Execute("INSERT INTO Users (Username, PasswordHash) VALUES (@username, @password)",
                         new SqlParameter("@username", username),
-                        new SqlParameter("@password", Helper.HashPassword(password))
+                        new SqlParameter("@password", Helper.PasswordHashing(password))
                     );
                     if (result > 0)
                     {

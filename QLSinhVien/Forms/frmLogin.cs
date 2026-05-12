@@ -30,7 +30,7 @@ namespace QLSinhVien.Forms
             {
                 var result = DB.Scalar("SELECT * FROM Users WHERE Username = @username AND PasswordHash = @password",
                     new SqlParameter("@username", username),
-                    new SqlParameter("@password", Helper.HashPassword(password))
+                    new SqlParameter("@password", Helper.PasswordHashing(password))
                 );
                 if (result != null)
                 {
