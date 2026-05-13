@@ -22,8 +22,7 @@ GO
 -- Tài khoản quản trị mặc định
 INSERT INTO Users (Username, PasswordHash, Phone, Role)
 VALUES 
-('Admin', '123456', '0901234567', N'Quản trị viên'),
-('teacher01', '123456', '0912345678', N'Giảng viên');
+('admin', '8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918', '0901234567', N'Giảng viên');
 GO
 
 -- =============================================

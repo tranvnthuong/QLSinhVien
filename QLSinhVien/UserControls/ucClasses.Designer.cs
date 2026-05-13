@@ -52,7 +52,7 @@
             this.btnDelete.Margin = new System.Windows.Forms.Padding(4);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(140, 42);
-            this.btnDelete.TabIndex = 13;
+            this.btnDelete.TabIndex = 6;
             this.btnDelete.Text = "Xóa";
             this.btnDelete.UseVisualStyleBackColor = true;
             this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
@@ -63,7 +63,7 @@
             this.btnUpdate.Margin = new System.Windows.Forms.Padding(4);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(140, 42);
-            this.btnUpdate.TabIndex = 14;
+            this.btnUpdate.TabIndex = 5;
             this.btnUpdate.Text = "Cập nhật";
             this.btnUpdate.UseVisualStyleBackColor = true;
             this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
@@ -74,7 +74,7 @@
             this.btnCreate.Margin = new System.Windows.Forms.Padding(4);
             this.btnCreate.Name = "btnCreate";
             this.btnCreate.Size = new System.Drawing.Size(140, 42);
-            this.btnCreate.TabIndex = 15;
+            this.btnCreate.TabIndex = 4;
             this.btnCreate.Text = "Tạo mới";
             this.btnCreate.UseVisualStyleBackColor = true;
             this.btnCreate.Click += new System.EventHandler(this.btnCreate_Click);
@@ -98,7 +98,7 @@
             this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(103, 29);
-            this.label5.TabIndex = 11;
+            this.label5.TabIndex = 9;
             this.label5.Text = "Tên Lớp";
             // 
             // label3
@@ -109,7 +109,7 @@
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(93, 29);
-            this.label3.TabIndex = 12;
+            this.label3.TabIndex = 8;
             this.label3.Text = "Mã Lớp";
             // 
             // txtDepartment
@@ -119,7 +119,7 @@
             this.txtDepartment.Margin = new System.Windows.Forms.Padding(4);
             this.txtDepartment.Name = "txtDepartment";
             this.txtDepartment.Size = new System.Drawing.Size(253, 34);
-            this.txtDepartment.TabIndex = 7;
+            this.txtDepartment.TabIndex = 2;
             // 
             // txtClassName
             // 
@@ -128,7 +128,7 @@
             this.txtClassName.Margin = new System.Windows.Forms.Padding(4);
             this.txtClassName.Name = "txtClassName";
             this.txtClassName.Size = new System.Drawing.Size(382, 34);
-            this.txtClassName.TabIndex = 8;
+            this.txtClassName.TabIndex = 1;
             // 
             // txtClassID
             // 
@@ -137,7 +137,7 @@
             this.txtClassID.Margin = new System.Windows.Forms.Padding(4);
             this.txtClassID.Name = "txtClassID";
             this.txtClassID.Size = new System.Drawing.Size(192, 34);
-            this.txtClassID.TabIndex = 9;
+            this.txtClassID.TabIndex = 0;
             // 
             // dgvClasses
             // 
@@ -156,7 +156,7 @@
             this.dgvClasses.RowHeadersWidth = 51;
             this.dgvClasses.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvClasses.Size = new System.Drawing.Size(1149, 430);
-            this.dgvClasses.TabIndex = 5;
+            this.dgvClasses.TabIndex = 3;
             this.dgvClasses.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvClasses_CellClick);
             // 
             // label1
@@ -167,7 +167,7 @@
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(1149, 50);
-            this.label1.TabIndex = 6;
+            this.label1.TabIndex = 11;
             this.label1.Text = "Quản lý Lớp học";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -182,7 +182,7 @@
             this.btnSkip.Margin = new System.Windows.Forms.Padding(4);
             this.btnSkip.Name = "btnSkip";
             this.btnSkip.Size = new System.Drawing.Size(140, 42);
-            this.btnSkip.TabIndex = 13;
+            this.btnSkip.TabIndex = 7;
             this.btnSkip.Text = "Bỏ qua";
             this.btnSkip.UseVisualStyleBackColor = true;
             this.btnSkip.Click += new System.EventHandler(this.btnSkip_Click);

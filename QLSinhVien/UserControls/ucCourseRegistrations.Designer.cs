@@ -54,14 +54,14 @@
             this.dgvCourseRegistrations.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvCourseRegistrations.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.dgvCourseRegistrations.Location = new System.Drawing.Point(0, 234);
-            this.dgvCourseRegistrations.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dgvCourseRegistrations.Margin = new System.Windows.Forms.Padding(4);
             this.dgvCourseRegistrations.Name = "dgvCourseRegistrations";
             this.dgvCourseRegistrations.ReadOnly = true;
             this.dgvCourseRegistrations.RowHeadersVisible = false;
             this.dgvCourseRegistrations.RowHeadersWidth = 51;
             this.dgvCourseRegistrations.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvCourseRegistrations.Size = new System.Drawing.Size(1149, 430);
-            this.dgvCourseRegistrations.TabIndex = 5;
+            this.dgvCourseRegistrations.TabIndex = 2;
             this.dgvCourseRegistrations.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCourseRegistrations_CellClick);
             // 
             // label1
@@ -72,7 +72,7 @@
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(1149, 50);
-            this.label1.TabIndex = 6;
+            this.label1.TabIndex = 9;
             this.label1.Text = "Quản lý Đăng ký môn học";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -84,10 +84,10 @@
             // btnSkip
             // 
             this.btnSkip.Location = new System.Drawing.Point(766, 184);
-            this.btnSkip.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnSkip.Margin = new System.Windows.Forms.Padding(4);
             this.btnSkip.Name = "btnSkip";
             this.btnSkip.Size = new System.Drawing.Size(140, 42);
-            this.btnSkip.TabIndex = 13;
+            this.btnSkip.TabIndex = 6;
             this.btnSkip.Text = "Bỏ qua";
             this.btnSkip.UseVisualStyleBackColor = true;
             this.btnSkip.Click += new System.EventHandler(this.btnSkip_Click);
@@ -98,7 +98,7 @@
             this.btnDelete.Margin = new System.Windows.Forms.Padding(4);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(140, 42);
-            this.btnDelete.TabIndex = 13;
+            this.btnDelete.TabIndex = 5;
             this.btnDelete.Text = "Xóa";
             this.btnDelete.UseVisualStyleBackColor = true;
             this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
@@ -111,7 +111,7 @@
             this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(223, 29);
-            this.label5.TabIndex = 11;
+            this.label5.TabIndex = 8;
             this.label5.Text = "Danh sách Môn học";
             // 
             // btnUpdate
@@ -120,7 +120,7 @@
             this.btnUpdate.Margin = new System.Windows.Forms.Padding(4);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(140, 42);
-            this.btnUpdate.TabIndex = 14;
+            this.btnUpdate.TabIndex = 4;
             this.btnUpdate.Text = "Cập nhật";
             this.btnUpdate.UseVisualStyleBackColor = true;
             this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
@@ -131,7 +131,7 @@
             this.btnCreate.Margin = new System.Windows.Forms.Padding(4);
             this.btnCreate.Name = "btnCreate";
             this.btnCreate.Size = new System.Drawing.Size(140, 42);
-            this.btnCreate.TabIndex = 15;
+            this.btnCreate.TabIndex = 3;
             this.btnCreate.Text = "Đăng ký";
             this.btnCreate.UseVisualStyleBackColor = true;
             this.btnCreate.Click += new System.EventHandler(this.btnCreate_Click);
@@ -145,7 +145,7 @@
             this.cboSubjects.Margin = new System.Windows.Forms.Padding(4);
             this.cboSubjects.Name = "cboSubjects";
             this.cboSubjects.Size = new System.Drawing.Size(344, 37);
-            this.cboSubjects.TabIndex = 19;
+            this.cboSubjects.TabIndex = 1;
             // 
             // cboStudents
             // 
@@ -156,7 +156,7 @@
             this.cboStudents.Margin = new System.Windows.Forms.Padding(4);
             this.cboStudents.Name = "cboStudents";
             this.cboStudents.Size = new System.Drawing.Size(344, 37);
-            this.cboStudents.TabIndex = 21;
+            this.cboStudents.TabIndex = 0;
             // 
             // label2
             // 
@@ -166,7 +166,7 @@
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(229, 29);
-            this.label2.TabIndex = 20;
+            this.label2.TabIndex = 7;
             this.label2.Text = "Danh sách Sinh viên";
             // 
             // ucCourseRegistrations

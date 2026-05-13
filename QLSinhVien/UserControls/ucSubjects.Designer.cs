@@ -54,7 +54,7 @@
             this.btnDelete.Margin = new System.Windows.Forms.Padding(4);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(140, 42);
-            this.btnDelete.TabIndex = 13;
+            this.btnDelete.TabIndex = 7;
             this.btnDelete.Text = "Xóa";
             this.btnDelete.UseVisualStyleBackColor = true;
             this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
@@ -65,7 +65,7 @@
             this.btnUpdate.Margin = new System.Windows.Forms.Padding(4);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(140, 42);
-            this.btnUpdate.TabIndex = 14;
+            this.btnUpdate.TabIndex = 6;
             this.btnUpdate.Text = "Cập nhật";
             this.btnUpdate.UseVisualStyleBackColor = true;
             this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
@@ -76,7 +76,7 @@
             this.btnCreate.Margin = new System.Windows.Forms.Padding(4);
             this.btnCreate.Name = "btnCreate";
             this.btnCreate.Size = new System.Drawing.Size(140, 42);
-            this.btnCreate.TabIndex = 15;
+            this.btnCreate.TabIndex = 5;
             this.btnCreate.Text = "Tạo mới";
             this.btnCreate.UseVisualStyleBackColor = true;
             this.btnCreate.Click += new System.EventHandler(this.btnCreate_Click);
@@ -89,7 +89,7 @@
             this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(111, 29);
-            this.label8.TabIndex = 10;
+            this.label8.TabIndex = 12;
             this.label8.Text = "Số tín chỉ";
             // 
             // label5
@@ -100,7 +100,7 @@
             this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(154, 29);
-            this.label5.TabIndex = 11;
+            this.label5.TabIndex = 10;
             this.label5.Text = "Tên Môn học";
             // 
             // label3
@@ -111,7 +111,7 @@
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(144, 29);
-            this.label3.TabIndex = 12;
+            this.label3.TabIndex = 9;
             this.label3.Text = "Mã Môn học";
             // 
             // txtCredits
@@ -121,7 +121,7 @@
             this.txtCredits.Margin = new System.Windows.Forms.Padding(4);
             this.txtCredits.Name = "txtCredits";
             this.txtCredits.Size = new System.Drawing.Size(100, 34);
-            this.txtCredits.TabIndex = 7;
+            this.txtCredits.TabIndex = 3;
             // 
             // txtSubjectName
             // 
@@ -130,7 +130,7 @@
             this.txtSubjectName.Margin = new System.Windows.Forms.Padding(4);
             this.txtSubjectName.Name = "txtSubjectName";
             this.txtSubjectName.Size = new System.Drawing.Size(350, 34);
-            this.txtSubjectName.TabIndex = 8;
+            this.txtSubjectName.TabIndex = 1;
             // 
             // txtSubjectID
             // 
@@ -139,7 +139,7 @@
             this.txtSubjectID.Margin = new System.Windows.Forms.Padding(4);
             this.txtSubjectID.Name = "txtSubjectID";
             this.txtSubjectID.Size = new System.Drawing.Size(192, 34);
-            this.txtSubjectID.TabIndex = 9;
+            this.txtSubjectID.TabIndex = 0;
             // 
             // dgvSubjects
             // 
@@ -158,7 +158,7 @@
             this.dgvSubjects.RowHeadersWidth = 51;
             this.dgvSubjects.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvSubjects.Size = new System.Drawing.Size(1206, 431);
-            this.dgvSubjects.TabIndex = 5;
+            this.dgvSubjects.TabIndex = 4;
             this.dgvSubjects.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvSubjects_CellClick);
             // 
             // label1
@@ -169,7 +169,7 @@
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(1206, 50);
-            this.label1.TabIndex = 6;
+            this.label1.TabIndex = 13;
             this.label1.Text = "Quản lý Môn học";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -195,7 +195,7 @@
             this.btnSkip.Margin = new System.Windows.Forms.Padding(4);
             this.btnSkip.Name = "btnSkip";
             this.btnSkip.Size = new System.Drawing.Size(140, 42);
-            this.btnSkip.TabIndex = 16;
+            this.btnSkip.TabIndex = 8;
             this.btnSkip.Text = "Bỏ qua";
             this.btnSkip.UseVisualStyleBackColor = true;
             this.btnSkip.Click += new System.EventHandler(this.btnSkip_Click);
@@ -212,7 +212,7 @@
             this.cboSubjectType.Margin = new System.Windows.Forms.Padding(4);
             this.cboSubjectType.Name = "cboSubjectType";
             this.cboSubjectType.Size = new System.Drawing.Size(244, 37);
-            this.cboSubjectType.TabIndex = 19;
+            this.cboSubjectType.TabIndex = 2;
             // 
             // ucSubjects
             // 

@@ -61,7 +61,7 @@
             this.btnDelete.Margin = new System.Windows.Forms.Padding(4);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(140, 42);
-            this.btnDelete.TabIndex = 13;
+            this.btnDelete.TabIndex = 9;
             this.btnDelete.Text = "Xóa";
             this.btnDelete.UseVisualStyleBackColor = true;
             this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
@@ -72,7 +72,7 @@
             this.btnUpdate.Margin = new System.Windows.Forms.Padding(4);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(140, 42);
-            this.btnUpdate.TabIndex = 14;
+            this.btnUpdate.TabIndex = 8;
             this.btnUpdate.Text = "Cập nhật";
             this.btnUpdate.UseVisualStyleBackColor = true;
             this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
@@ -83,7 +83,7 @@
             this.btnCreate.Margin = new System.Windows.Forms.Padding(4);
             this.btnCreate.Name = "btnCreate";
             this.btnCreate.Size = new System.Drawing.Size(140, 42);
-            this.btnCreate.TabIndex = 15;
+            this.btnCreate.TabIndex = 7;
             this.btnCreate.Text = "Tạo mới";
             this.btnCreate.UseVisualStyleBackColor = true;
             this.btnCreate.Click += new System.EventHandler(this.btnCreate_Click);
@@ -96,7 +96,7 @@
             this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(99, 29);
-            this.label8.TabIndex = 10;
+            this.label8.TabIndex = 16;
             this.label8.Text = "Lớp học";
             // 
             // label5
@@ -107,7 +107,7 @@
             this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(160, 29);
-            this.label5.TabIndex = 11;
+            this.label5.TabIndex = 13;
             this.label5.Text = "Tên Sinh viên";
             // 
             // label3
@@ -128,7 +128,7 @@
             this.txtFullName.Margin = new System.Windows.Forms.Padding(4);
             this.txtFullName.Name = "txtFullName";
             this.txtFullName.Size = new System.Drawing.Size(265, 34);
-            this.txtFullName.TabIndex = 8;
+            this.txtFullName.TabIndex = 1;
             // 
             // txtStudentID
             // 
@@ -137,7 +137,7 @@
             this.txtStudentID.Margin = new System.Windows.Forms.Padding(4);
             this.txtStudentID.Name = "txtStudentID";
             this.txtStudentID.Size = new System.Drawing.Size(162, 34);
-            this.txtStudentID.TabIndex = 9;
+            this.txtStudentID.TabIndex = 0;
             // 
             // dgvStudents
             // 
@@ -156,7 +156,7 @@
             this.dgvStudents.RowHeadersWidth = 51;
             this.dgvStudents.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvStudents.Size = new System.Drawing.Size(1515, 431);
-            this.dgvStudents.TabIndex = 5;
+            this.dgvStudents.TabIndex = 6;
             this.dgvStudents.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvStudents_CellClick);
             // 
             // label1
@@ -167,7 +167,7 @@
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(1515, 50);
-            this.label1.TabIndex = 6;
+            this.label1.TabIndex = 17;
             this.label1.Text = "Quản lý Sinh viên";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -184,7 +184,7 @@
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(119, 29);
-            this.label2.TabIndex = 11;
+            this.label2.TabIndex = 14;
             this.label2.Text = "Ngày sinh";
             // 
             // btnSkip
@@ -193,7 +193,7 @@
             this.btnSkip.Margin = new System.Windows.Forms.Padding(4);
             this.btnSkip.Name = "btnSkip";
             this.btnSkip.Size = new System.Drawing.Size(140, 42);
-            this.btnSkip.TabIndex = 16;
+            this.btnSkip.TabIndex = 10;
             this.btnSkip.Text = "Bỏ qua";
             this.btnSkip.UseVisualStyleBackColor = true;
             this.btnSkip.Click += new System.EventHandler(this.btnSkip_Click);
@@ -207,7 +207,7 @@
             this.dtpDateOfBirth.Margin = new System.Windows.Forms.Padding(4);
             this.dtpDateOfBirth.Name = "dtpDateOfBirth";
             this.dtpDateOfBirth.Size = new System.Drawing.Size(168, 34);
-            this.dtpDateOfBirth.TabIndex = 17;
+            this.dtpDateOfBirth.TabIndex = 2;
             // 
             // cboGender
             // 
@@ -221,7 +221,7 @@
             this.cboGender.Margin = new System.Windows.Forms.Padding(4);
             this.cboGender.Name = "cboGender";
             this.cboGender.Size = new System.Drawing.Size(143, 37);
-            this.cboGender.TabIndex = 18;
+            this.cboGender.TabIndex = 3;
             // 
             // label4
             // 
@@ -231,7 +231,7 @@
             this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(101, 29);
-            this.label4.TabIndex = 11;
+            this.label4.TabIndex = 15;
             this.label4.Text = "Giới tính";
             // 
             // cboClasses
@@ -243,7 +243,7 @@
             this.cboClasses.Margin = new System.Windows.Forms.Padding(4);
             this.cboClasses.Name = "cboClasses";
             this.cboClasses.Size = new System.Drawing.Size(344, 37);
-            this.cboClasses.TabIndex = 18;
+            this.cboClasses.TabIndex = 4;
             // 
             // label6
             // 
@@ -264,7 +264,7 @@
             this.txtAvatarPath.Name = "txtAvatarPath";
             this.txtAvatarPath.ReadOnly = true;
             this.txtAvatarPath.Size = new System.Drawing.Size(248, 34);
-            this.txtAvatarPath.TabIndex = 9;
+            this.txtAvatarPath.TabIndex = 5;
             this.txtAvatarPath.Enter += new System.EventHandler(this.txtAvatarPath_Enter);
             // 
             // openFileDialog1
