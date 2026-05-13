@@ -41,9 +41,10 @@ namespace QLSinhVien.Forms
                 }
                 else
                 {
-                    int result = DB.Execute("INSERT INTO Users (Username, PasswordHash) VALUES (@username, @password)",
+                    int result = DB.Execute("INSERT INTO Users (Username, PasswordHash, Role) VALUES (@username, @password, @role)",
                         new SqlParameter("@username", username),
-                        new SqlParameter("@password", Helper.PasswordHashing(password))
+                        new SqlParameter("@password", Helper.PasswordHashing(password)),
+                        new SqlParameter("@role", "Giảng viên")
                     );
                     if (result > 0)
                     {
@@ -57,7 +58,7 @@ namespace QLSinhVien.Forms
             }
             catch (SqlException ex)
             {
-                MessageBox.Show($"Có lỗi xảy ra khi đăng ký tài khoản {ex}", "Thông báo");
+                MessageBox.Show($"Có lỗi xảy ra khi đăng ký tài khoản {ex.Message}", "Thông báo");
             }
         }
 

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
+using QLSinhVien.Forms;
 using QLSinhVien.UserControls;
 
 namespace QLSinhVien
@@ -25,16 +26,20 @@ namespace QLSinhVien
             uc = new ucStudents();
             uc.Dock = DockStyle.Fill;
             tabStudents.Controls.Add(uc);
+
+            uc = new ucCourseRegistrations();
+            uc.Dock = DockStyle.Fill;
+            tabCourseRegistration.Controls.Add(uc);
         }
 
         private void FormMain_Load(object sender, EventArgs e)
         {
-            //frmLogin formLogin = new frmLogin();
-            //if (formLogin.ShowDialog() == DialogResult.Cancel)
-            //{
-            //    Close();
-            //    return;
-            //}
+            frmLogin formLogin = new frmLogin();
+            if (formLogin.ShowDialog() == DialogResult.Cancel)
+            {
+                Close();
+                return;
+            }
         }
       
     }

@@ -44,7 +44,7 @@ namespace QLSinhVien.Forms
             }
             catch (SqlException ex)
             {
-                MessageBox.Show($"Có lỗi xảy ra khi đăng nhập {ex}", "Thông báo");
+                MessageBox.Show($"Có lỗi xảy ra khi đăng nhập {ex.Message}", "Thông báo");
             }
         }
 

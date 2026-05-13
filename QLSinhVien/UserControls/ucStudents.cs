@@ -1,20 +1,32 @@
 ﻿using System;
 using System.Data.SqlClient;
-using System.Security.Cryptography;
+using System.Drawing;
+using System.IO;
 using System.Windows.Forms;
 
 namespace QLSinhVien.UserControls
 {
     public partial class ucStudents : UserControl
     {
+
+        private string ImagesFolder;
+
         public ucStudents()
         {
             InitializeComponent();
-            LoadCboClasses();
+
+            LoadClassesToComboBox();
             LoadStudents();
+
+            ImagesFolder = Path.Combine(Application.StartupPath, "Images");
+
+            if (!Directory.Exists(ImagesFolder))
+            {
+                Directory.CreateDirectory(ImagesFolder);
+            }
         }
 
-        private void LoadCboClasses()
+        private void LoadClassesToComboBox()
         {
             cboClasses.DataSource = DB.Query("SELECT * FROM Classes");
             cboClasses.DisplayMember = "ClassName";
@@ -23,7 +35,21 @@ namespace QLSinhVien.UserControls
 
         private void LoadStudents()
         {
-            dgvStudents.DataSource = DB.Query("SELECT s.*, c.ClassName FROM Students s LEFT JOIN Classes c ON s.ClassID = c.ClassID");
+            string sql = @"
+            SELECT s.StudentID,
+                s.FullName,
+                CASE
+                    WHEN s.Gender = 0 THEN N'Nữ'
+                    WHEN s.Gender = 1 THEN N'Nam'
+                END AS Gender,
+                s.DateOfBirth,
+                c.ClassName,
+                s.AvatarPath
+            FROM Students s
+                LEFT JOIN Classes c 
+                ON s.ClassID = c.ClassID
+            ";
+            dgvStudents.DataSource = DB.Query(sql);
             dgvStudents.Columns["StudentID"].HeaderText = "Mã Sinh viên";
             dgvStudents.Columns["FullName"].HeaderText = "Tên Sinh viên";
             dgvStudents.Columns["DateOfBirth"].HeaderText = "Ngày sinh";
@@ -39,58 +65,77 @@ namespace QLSinhVien.UserControls
         private string ClassID { get => cboClasses.SelectedValue.ToString(); set => cboClasses.SelectedValue = value; }
         private string AvatarPath { get => txtAvatarPath.Text; set => txtAvatarPath.Text = value; }
 
-        private void ClearError()
-        {
-            errorProvider1.SetError(txtStudentID, "");
-            errorProvider1.SetError(txtFullName, "");
-            errorProvider1.SetError(dtpDateOfBirth, "");
-            errorProvider1.SetError(cboGender, "");
-            errorProvider1.SetError(cboClasses, "");
-        }
-
         private void ClearInput()
         {
-            StudentID = "";
-            FullName = "";
+            StudentID = string.Empty;
+            FullName = string.Empty;
             DateOfBirth = new DateTime(1900, 10, 10);
             Gender = 0;
-            ClassID = "";
+            cboClasses.SelectedIndex = -1;
+            AvatarPath = string.Empty;
+            picAvatar.Image = null;
         }
 
         private bool ValidateInput()
         {
+            // Code Mỳ Ý
             int errors = 0;
             if (string.IsNullOrWhiteSpace(StudentID))
             {
                 errorProvider1.SetError(txtStudentID, "Mã Sinh viên không được để trống");
                 errors++;
             }
+            else
+            {
+                errorProvider1.SetError(txtStudentID, string.Empty);
+            }
+
             if (string.IsNullOrWhiteSpace(FullName))
             {
                 errorProvider1.SetError(txtFullName, "Tên Sinh viên không được để trống");
                 errors++;
             }
+            else
+            {
+                errorProvider1.SetError(txtFullName, string.Empty);
+            }
+
             if (DateOfBirth == new DateTime(1900, 10, 10))
             {
                 errorProvider1.SetError(dtpDateOfBirth, "Vui lòng chọn ngày sinh");
                 errors++;
             }
-            if (string.IsNullOrEmpty(ClassID))
+            else
+            {
+                errorProvider1.SetError(dtpDateOfBirth, string.Empty);
+            }
+
+            if (cboClasses.SelectedIndex == -1)
             {
                 errorProvider1.SetError(cboClasses, "Vui lòng chọn lớp học");
                 errors++;
             }
+            else
+            {
+                errorProvider1.SetError(cboClasses, string.Empty);
+            }
+
             return errors == 0;
         }
 
-        private void btnAdd_Click(object sender, EventArgs e)
+        private void btnCreate_Click(object sender, EventArgs e)
         {
             if (!ValidateInput()) return;
 
-            ClearError();
-
             try
             {
+                var classLimit = DB.Scalar("SELECT COUNT(*) FROM Students WHERE ClassID = @ClassID", new SqlParameter("@ClassID", ClassID));
+                if (classLimit != null && (int)classLimit >= 60)
+                {
+                    MessageBox.Show("Lớp đã đạt tối đa thành viên", "Thông báo");
+                    return;
+                }
+
                 var exist = DB.Scalar("SELECT 1 FROM Students WHERE StudentID = @StudentID", new SqlParameter("@StudentID", StudentID));
                 if (exist != null)
                 {
@@ -98,12 +143,15 @@ namespace QLSinhVien.UserControls
                     return;
                 }
 
+                // Đường dẫn tương đối + tên file
+                string relativePath = @"Images\" + Path.GetFileName(AvatarPath);
+
                 int reslut = DB.Execute("INSERT INTO Students(StudentID, FullName, DateOfBirth, Gender, AvatarPath, ClassID) VALUES (@StudentID, @FullName, @DateOfBirth, @Gender, @AvatarPath, @ClassID)",
                     new SqlParameter("@StudentID", StudentID),
                     new SqlParameter("@FullName", FullName),
                     new SqlParameter("@DateOfBirth", DateOfBirth),
                     new SqlParameter("@Gender", Gender),
-                    new SqlParameter("@AvatarPath", ""),
+                    new SqlParameter("@AvatarPath", relativePath),
                     new SqlParameter("@ClassID", ClassID)
                 );
                 if (reslut > 0)
@@ -119,15 +167,13 @@ namespace QLSinhVien.UserControls
             }
             catch (SqlException ex)
             {
-                MessageBox.Show($"Có lỗi xảy ra khi thêm dữ liệu {ex}", "Thông báo");
+                MessageBox.Show($"Có lỗi xảy ra khi thêm dữ liệu {ex.Message}", "Lỗi ngoại lệ");
             }
         }
 
-        private void btnEdit_Click(object sender, EventArgs e)
+        private void btnUpdate_Click(object sender, EventArgs e)
         {
             if (!ValidateInput()) return;
-
-            ClearError();
 
             try
             {
@@ -138,12 +184,14 @@ namespace QLSinhVien.UserControls
                     return;
                 }
 
+                string relativePath = @"Images\" + Path.GetFileName(AvatarPath);
+
                 int reslut = DB.Execute("UPDATE Students SET FullName = @FullName, DateOfBirth = @DateOfBirth, Gender = @Gender, AvatarPath = @AvatarPath, ClassID = @ClassID WHERE StudentID = @StudentID",
                     new SqlParameter("@StudentID", StudentID),
                     new SqlParameter("@FullName", FullName),
                     new SqlParameter("@DateOfBirth", DateOfBirth),
                     new SqlParameter("@Gender", Gender),
-                    new SqlParameter("@AvatarPath", ""),
+                    new SqlParameter("@AvatarPath", relativePath),
                     new SqlParameter("@ClassID", ClassID)
                 );
 
@@ -160,7 +208,7 @@ namespace QLSinhVien.UserControls
             }
             catch (SqlException ex)
             {
-                MessageBox.Show($"Có lỗi xảy ra khi cập nhật dữ liệu {ex}", "Thông báo");
+                MessageBox.Show($"Có lỗi xảy ra khi cập nhật dữ liệu {ex.Message}", "Lỗi ngoại lệ");
             }
         }
 
@@ -188,7 +236,15 @@ namespace QLSinhVien.UserControls
                     }
                     catch (SqlException ex)
                     {
-                        MessageBox.Show($"Có lỗi xảy ra khi xóa dữ liệu: {ex}", "Lỗi ngoại lệ");
+                        // Foreign key constraint
+                        if (ex.Number == 547)
+                        {
+                            MessageBox.Show("Không thể xóa vì dữ liệu đang được sử dụng", "Lỗi ràng buộc");
+                        }
+                        else
+                        {
+                            MessageBox.Show($"Có lỗi xảy ra khi xóa dữ liệu: {ex.Message}", "Lỗi ngoại lệ");
+                        }
                         return;
                     }
                 }
@@ -203,36 +259,74 @@ namespace QLSinhVien.UserControls
 
         private void dgvStudents_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            // 1. Kiểm tra e.RowIndex để tránh lỗi khi người dùng click vào phần Header (tiêu đề cột)
             int rowIndex = e.RowIndex;
-
             if (rowIndex >= 0)
             {
-                // 2. Truy cập vào hàng hiện tại được click
                 DataGridViewRow row = dgvStudents.Rows[rowIndex];
-
-                // 3. Trích xuất dữ liệu từ các ô (Cells)
-                // Bạn có thể dùng tên cột (Column Name) hoặc vị trí (Index)
                 StudentID = row.Cells["StudentID"].Value.ToString();
                 FullName = row.Cells["FullName"].Value.ToString();
                 DateOfBirth = DateTime.Parse(row.Cells["DateOfBirth"].Value.ToString());
-                Gender = int.Parse(row.Cells["Gender"].Value.ToString());
+                Gender = row.Cells["Gender"].Value.ToString() == "Nữ" ? 0 : 1;
                 AvatarPath = row.Cells["AvatarPath"].Value.ToString();
-                ClassID = row.Cells["ClassID"].Value.ToString();
+                if (!string.IsNullOrEmpty(AvatarPath))
+                {
+                    // Nhờ đường dẫn tương đối để load ảnh, không có ảnh thì hủy hiển thị
+                    if (File.Exists(AvatarPath))
+                    {
+                        picAvatar.Image?.Dispose();
+                        picAvatar.Image = Image.FromFile(AvatarPath);
+                    }
+                    else
+                    {
+                        picAvatar.Image?.Dispose();
+                        picAvatar.Image = null;
+                    }
+                }
             }
         }
 
         private void btnSkip_Click(object sender, EventArgs e)
         {
-            ClearError();
+            LoadClassesToComboBox();
             ClearInput();
         }
 
         private void txtAvatarPath_Enter(object sender, EventArgs e)
         {
-            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            try
             {
-                txtAvatarPath.Text = openFileDialog1.FileName;
+                if (openFileDialog1.ShowDialog() == DialogResult.OK)
+                {
+                    string fullPathSelected = openFileDialog1.FileName;
+
+                    picAvatar.Image?.Dispose();
+
+                    picAvatar.Image = Image.FromFile(fullPathSelected);
+
+                    txtAvatarPath.Text = fullPathSelected;
+
+                    string fileName = Path.GetFileName(fullPathSelected);
+
+                    string destinationPath = Path.Combine(ImagesFolder, fileName);
+
+                    File.Copy(fullPathSelected, destinationPath, true);
+                }
+            }
+            catch (OutOfMemoryException)
+            {
+                MessageBox.Show("Kích thước ảnh quá lớn", "Lỗi ngoại lệ");
+            }
+            catch (FileNotFoundException)
+            {
+                MessageBox.Show("Không tìm thấy File", "Lỗi ngoại lệ");
+            }
+            catch (DirectoryNotFoundException)
+            {
+                MessageBox.Show("Không tìm thấy Folder", "Lỗi ngoại lệ");
+            }
+            catch (IOException ex)
+            {
+                MessageBox.Show($"Có lỗi khi thao tác với File: {ex.Message}", "Lỗi ngoại lệ");
             }
         }
     }
