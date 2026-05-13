@@ -24,6 +24,20 @@ namespace QLSinhVien.UserControls
         private string ClassName { get => txtClassName.Text; set => txtClassName.Text = value; }
         private string Department { get => txtDepartment.Text; set => txtDepartment.Text = value; }
 
+        private void ClearError()
+        {
+            errorProvider1.SetError(txtClassID, "");
+            errorProvider1.SetError(txtClassName, "");
+            errorProvider1.SetError(txtDepartment, "");
+        }
+
+        private void ClearInput()
+        {
+            ClassID = "";
+            ClassName = "";
+            Department = "";
+        }
+
         private bool ValidateInput()
         {
             int errors = 0;
@@ -49,6 +63,8 @@ namespace QLSinhVien.UserControls
         {
             if (!ValidateInput()) return;
 
+            ClearError();
+
             try
             {
                 var exist = DB.Scalar("SELECT 1 FROM Classes WHERE ClassID = @ClassID", new SqlParameter("@ClassID", ClassID));
@@ -65,6 +81,7 @@ namespace QLSinhVien.UserControls
                 );
                 if (reslut > 0)
                 {
+                    ClearInput();
                     LoadClasses();
                     MessageBox.Show("Thêm thông tin Lớp học thành công", "Thông báo");
                 }
@@ -83,6 +100,8 @@ namespace QLSinhVien.UserControls
         {
             if (!ValidateInput()) return;
 
+            ClearError();
+
             try
             {
                 var exist = DB.Scalar("SELECT 1 FROM Classes WHERE ClassID = @ClassID", new SqlParameter("@ClassID", ClassID));
@@ -99,6 +118,7 @@ namespace QLSinhVien.UserControls
                 );
                 if (reslut > 0)
                 {
+                    ClearInput();
                     LoadClasses();
                     MessageBox.Show("Cập nhật thông tin Lớp học thành công", "Thông báo");
                 }
@@ -166,6 +186,12 @@ namespace QLSinhVien.UserControls
                 ClassName = row.Cells["ClassName"].Value.ToString();
                 Department = row.Cells["Department"].Value.ToString();
             }
+        }
+
+        private void btnSkip_Click(object sender, EventArgs e)
+        {
+            ClearError();
+            ClearInput();
         }
     }
 }

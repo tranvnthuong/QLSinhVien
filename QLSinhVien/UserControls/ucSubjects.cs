@@ -26,6 +26,22 @@ namespace QLSinhVien.UserControls
         private string SubjectType { get => txtSubjectType.Text; set => txtSubjectType.Text = value; }
         private string Credits { get => txtCredits.Text; set => txtCredits.Text = value; }
 
+        private void ClearError()
+        {
+            errorProvider1.SetError(txtSubjectID, "");
+            errorProvider1.SetError(txtSubjectName, "");
+            errorProvider1.SetError(txtSubjectType, "");
+            errorProvider1.SetError(txtCredits, "");
+        }
+
+        private void ClearInput()
+        {
+            SubjectID = "";
+            SubjectName = "";
+            SubjectType = "";
+            Credits = "";
+        }
+
         private bool ValidateInput()
         {
             int errors = 0;
@@ -69,6 +85,8 @@ namespace QLSinhVien.UserControls
         {
             if (!ValidateInput()) return;
 
+            ClearError();
+
             try
             {
                 var exist = DB.Scalar("SELECT 1 FROM Subjects WHERE SubjectID = @SubjectID", new SqlParameter("@SubjectID", SubjectID));
@@ -86,6 +104,7 @@ namespace QLSinhVien.UserControls
                 );
                 if (reslut > 0)
                 {
+                    ClearInput();
                     LoadSubjects();
                     MessageBox.Show("Thêm thông tin Môn học thành công", "Thông báo");
                 }
@@ -104,6 +123,8 @@ namespace QLSinhVien.UserControls
         {
             if (!ValidateInput()) return;
 
+            ClearError();
+
             try
             {
                 var exist = DB.Scalar("SELECT 1 FROM Subjects WHERE SubjectID = @SubjectID", new SqlParameter("@SubjectID", SubjectID));
@@ -121,6 +142,7 @@ namespace QLSinhVien.UserControls
                 );
                 if (reslut > 0)
                 {
+                    ClearInput();
                     LoadSubjects();
                     MessageBox.Show("Cập nhật thông tin Môn học thành công", "Thông báo");
                 }
@@ -189,6 +211,12 @@ namespace QLSinhVien.UserControls
                 SubjectType = row.Cells["SubjectType"].Value.ToString();
                 Credits = row.Cells["Credits"].Value.ToString();
             }
+        }
+
+        private void btnSkip_Click(object sender, EventArgs e)
+        {
+            ClearError();
+            ClearInput();
         }
     }
 }

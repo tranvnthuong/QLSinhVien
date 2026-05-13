@@ -10,13 +10,21 @@ namespace QLSinhVien
         {
             InitializeComponent();
 
-            UserControl uc = new ucClasses();
+            UserControl uc = new ucDashboard();
+            uc.Dock = DockStyle.Fill;
+            tabDashboard.Controls.Add(uc);
+
+            uc = new ucClasses();
             uc.Dock = DockStyle.Fill;
             tabClasses.Controls.Add(uc);
 
             uc = new ucSubjects();
             uc.Dock = DockStyle.Fill;
             tabSubjects.Controls.Add(uc);
+
+            uc = new ucStudents();
+            uc.Dock = DockStyle.Fill;
+            tabStudents.Controls.Add(uc);
         }
 
         private void FormMain_Load(object sender, EventArgs e)
@@ -27,16 +35,7 @@ namespace QLSinhVien
             //    Close();
             //    return;
             //}
-            LoadDashboard();
         }
-       
-
-        private void LoadDashboard()
-        {
-            lblCountClasses.Text = DB.Scalar("SELECT COUNT(*) FROM Classes").ToString();
-            lblCountSubjects.Text = DB.Scalar("SELECT COUNT(*) FROM Subjects").ToString();
-            lblCountStudents.Text = DB.Scalar("SELECT COUNT(*) FROM Students").ToString();
-            lblCountCourseRegistrations.Text = DB.Scalar("SELECT COUNT(*) FROM CourseRegistrations").ToString();
-        }
+      
     }
 }

@@ -68,6 +68,18 @@
     <Compile Include="Helper.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UserControls\ucDashboard.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\ucDashboard.Designer.cs">
+      <DependentUpon>ucDashboard.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\ucStudents.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\ucStudents.Designer.cs">
+      <DependentUpon>ucStudents.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\ucSubjects.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -98,6 +110,12 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="UserControls\ucDashboard.resx">
+      <DependentUpon>ucDashboard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\ucStudents.resx">
+      <DependentUpon>ucStudents.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UserControls\ucSubjects.resx">
       <DependentUpon>ucSubjects.cs</DependentUpon>
     </EmbeddedResource>
