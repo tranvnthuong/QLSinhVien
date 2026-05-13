@@ -1,5 +1,8 @@
-﻿using System.Security.Cryptography;
+﻿using System;
+using System.IO;
+using System.Security.Cryptography;
 using System.Text;
+using System.Windows.Forms;
 
 public static class Helper
 {
@@ -17,4 +20,5 @@ public static class Helper
             return builder.ToString();
         }
     }
+    
 }

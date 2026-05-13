@@ -9,7 +9,26 @@ namespace QLSinhVien.UserControls
         public ucSubjects()
         {
             InitializeComponent();
+
+            InitSubjectTypeToComboBox();
             LoadSubjects();
+        }
+
+        private void InitSubjectTypeToComboBox()
+        {
+            string[] items =
+            {
+                "Bắt buộc",
+                "Tự chọn",
+                "Đại cương",
+                "Chuyên ngành",
+                "Thực hành",
+                "Lý thuyết",
+                "Tích hợp",
+                "Thực tập",
+                "Khóa luận"
+            };
+            cboSubjectType.Items.AddRange(items);
         }
 
         private void LoadSubjects()
@@ -17,75 +36,86 @@ namespace QLSinhVien.UserControls
             dgvSubjects.DataSource = DB.Query("SELECT * FROM Subjects");
             dgvSubjects.Columns["SubjectID"].HeaderText = "Mã Môn học";
             dgvSubjects.Columns["SubjectName"].HeaderText = "Tên Môn học";
-            dgvSubjects.Columns["SubjectType"].HeaderText = "Kiểu Môn học";
+            dgvSubjects.Columns["SubjectType"].HeaderText = "Loại Môn học";
             dgvSubjects.Columns["Credits"].HeaderText = "Số tín chỉ";
         }
 
         private string SubjectID { get => txtSubjectID.Text; set => txtSubjectID.Text = value; }
         private string SubjectName { get => txtSubjectName.Text; set => txtSubjectName.Text = value; }
-        private string SubjectType { get => txtSubjectType.Text; set => txtSubjectType.Text = value; }
+        private string SubjectType { get => cboSubjectType.Text; set => cboSubjectType.Text = value; }
         private string Credits { get => txtCredits.Text; set => txtCredits.Text = value; }
-
-        private void ClearError()
-        {
-            errorProvider1.SetError(txtSubjectID, "");
-            errorProvider1.SetError(txtSubjectName, "");
-            errorProvider1.SetError(txtSubjectType, "");
-            errorProvider1.SetError(txtCredits, "");
-        }
 
         private void ClearInput()
         {
-            SubjectID = "";
-            SubjectName = "";
-            SubjectType = "";
-            Credits = "";
+            SubjectID = string.Empty;
+            SubjectName = string.Empty;
+            cboSubjectType.SelectedIndex = -1;
+            Credits = string.Empty;
         }
 
         private bool ValidateInput()
         {
+            // Code Mỳ Ý
             int errors = 0;
             if (string.IsNullOrWhiteSpace(SubjectID))
             {
                 errorProvider1.SetError(txtSubjectID, "Mã Môn học không được để trống");
                 errors++;
             }
+            else
+            {
+                errorProvider1.SetError(txtSubjectID, string.Empty);
+            }
+
             if (string.IsNullOrWhiteSpace(SubjectName))
             {
                 errorProvider1.SetError(txtSubjectName, "Tên Môn học không được để trống");
                 errors++;
             }
-            if (string.IsNullOrWhiteSpace(SubjectType))
+            else
             {
-                errorProvider1.SetError(txtSubjectType, "Kiểu Môn học không được để trống");
+                errorProvider1.SetError(txtSubjectName, string.Empty);
+            }
+
+            if (cboSubjectType.SelectedIndex == -1)
+            {
+                errorProvider1.SetError(cboSubjectType, "Loại Môn học không được để trống");
                 errors++;
             }
+            else
+            {
+                errorProvider1.SetError(cboSubjectType, string.Empty);
+            }
+
             if (string.IsNullOrWhiteSpace(Credits))
             {
                 errorProvider1.SetError(txtCredits, "Tín chỉ không được để trống");
                 errors++;
-                if (int.TryParse(Credits, out int creditValue))
+            }
+            else if (int.TryParse(Credits, out int creditValue))
+            {
+                if (creditValue <= 0)
                 {
-                    if (creditValue <= 0)
-                    {
-                        errorProvider1.SetError(txtCredits, "Tín chỉ phải lớn hơn không (số dương)");
-                        errors++;
-                    }
-                }
-                else
-                {
-                    errorProvider1.SetError(txtCredits, "Tín chỉ phải là một số nguyên");
+                    errorProvider1.SetError(txtCredits, "Tín chỉ phải lớn hơn không (số dương)");
                     errors++;
                 }
             }
+            else if (!int.TryParse(Credits, out int _))
+            {
+                errorProvider1.SetError(txtCredits, "Tín chỉ phải là một số nguyên");
+                errors++;
+            }
+            else
+            {
+                errorProvider1.SetError(txtCredits, string.Empty);
+            }
+            
             return errors == 0;
         }
 
-        private void btnAdd_Click(object sender, EventArgs e)
+        private void btnCreate_Click(object sender, EventArgs e)
         {
             if (!ValidateInput()) return;
-
-            ClearError();
 
             try
             {
@@ -115,15 +145,13 @@ namespace QLSinhVien.UserControls
             }
             catch (SqlException ex)
             {
-                MessageBox.Show($"Có lỗi xảy ra khi thêm dữ liệu {ex}", "Thông báo");
+                MessageBox.Show($"Có lỗi xảy ra khi thêm dữ liệu {ex.Message}", "Lỗi ngoại lệ");
             }
         }
 
-        private void btnEdit_Click(object sender, EventArgs e)
+        private void btnUpdate_Click(object sender, EventArgs e)
         {
             if (!ValidateInput()) return;
-
-            ClearError();
 
             try
             {
@@ -153,7 +181,7 @@ namespace QLSinhVien.UserControls
             }
             catch (SqlException ex)
             {
-                MessageBox.Show($"Có lỗi xảy ra khi cập nhật dữ liệu {ex}", "Thông báo");
+                MessageBox.Show($"Có lỗi xảy ra khi cập nhật dữ liệu {ex.Message}", "Lỗi ngoại lệ");
             }
         }
 
@@ -181,7 +209,15 @@ namespace QLSinhVien.UserControls
                     }
                     catch (SqlException ex)
                     {
-                        MessageBox.Show($"Có lỗi xảy ra khi xóa dữ liệu: {ex}", "Lỗi ngoại lệ");
+                        // Foreign key constraint
+                        if (ex.Number == 547)
+                        {
+                            MessageBox.Show("Không thể xóa vì dữ liệu đang được sử dụng", "Lỗi ràng buộc");
+                        }
+                        else
+                        {
+                            MessageBox.Show($"Có lỗi xảy ra khi xóa dữ liệu: {ex.Message}", "Lỗi ngoại lệ");
+                        }
                         return;
                     }
                 }
@@ -215,7 +251,6 @@ namespace QLSinhVien.UserControls
 
         private void btnSkip_Click(object sender, EventArgs e)
         {
-            ClearError();
             ClearInput();
         }
     }

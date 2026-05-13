@@ -9,6 +9,7 @@ namespace QLSinhVien.UserControls
         public ucClasses()
         {
             InitializeComponent();
+
             LoadClasses();
         }
 
@@ -24,46 +25,53 @@ namespace QLSinhVien.UserControls
         private string ClassName { get => txtClassName.Text; set => txtClassName.Text = value; }
         private string Department { get => txtDepartment.Text; set => txtDepartment.Text = value; }
 
-        private void ClearError()
-        {
-            errorProvider1.SetError(txtClassID, "");
-            errorProvider1.SetError(txtClassName, "");
-            errorProvider1.SetError(txtDepartment, "");
-        }
-
         private void ClearInput()
         {
-            ClassID = "";
-            ClassName = "";
-            Department = "";
+            ClassID = string.Empty;
+            ClassName = string.Empty;
+            Department = string.Empty;
         }
 
         private bool ValidateInput()
         {
-            int errors = 0;
+			// Spaghetti code
+			int errors = 0;
             if (string.IsNullOrWhiteSpace(ClassID))
             {
                 errorProvider1.SetError(txtClassID, "Mã Lớp không được để trống");
                 errors++;
             }
+            else
+            {
+				errorProvider1.SetError(txtClassID, string.Empty);
+			}
+
             if (string.IsNullOrWhiteSpace(ClassName))
             {
                 errorProvider1.SetError(txtClassName, "Tên Lớp không được để trống");
                 errors++;
             }
-            if (string.IsNullOrWhiteSpace(Department))
+			else
+			{
+				errorProvider1.SetError(txtClassName, string.Empty);
+			}
+
+			if (string.IsNullOrWhiteSpace(Department))
             {
                 errorProvider1.SetError(txtDepartment, "Khoa không được để trống");
                 errors++;
             }
-            return errors == 0;
+			else
+			{
+				errorProvider1.SetError(txtDepartment, string.Empty);
+			}
+
+			return errors == 0;
         }
 
-        private void btnAdd_Click(object sender, EventArgs e)
+        private void btnCreate_Click(object sender, EventArgs e)
         {
             if (!ValidateInput()) return;
-
-            ClearError();
 
             try
             {
@@ -92,15 +100,13 @@ namespace QLSinhVien.UserControls
             }
             catch (SqlException ex)
             {
-                MessageBox.Show($"Có lỗi xảy ra khi thêm dữ liệu {ex}", "Thông báo");
+                MessageBox.Show($"Có lỗi xảy ra khi thêm dữ liệu {ex.Message}", "Lỗi ngoại lệ");
             }
         }
 
-        private void btnEdit_Click(object sender, EventArgs e)
+        private void btnUpdate_Click(object sender, EventArgs e)
         {
             if (!ValidateInput()) return;
-
-            ClearError();
 
             try
             {
@@ -129,7 +135,7 @@ namespace QLSinhVien.UserControls
             }
             catch (SqlException ex)
             {
-                MessageBox.Show($"Có lỗi xảy ra khi cập nhật dữ liệu {ex}", "Thông báo");
+                MessageBox.Show($"Có lỗi xảy ra khi cập nhật dữ liệu {ex.Message}", "Lỗi ngoại lệ");
             }
         }
 
@@ -157,8 +163,16 @@ namespace QLSinhVien.UserControls
                     }
                     catch (SqlException ex)
                     {
-                        MessageBox.Show($"Có lỗi xảy ra khi xóa dữ liệu: {ex}", "Lỗi ngoại lệ");
-                        return;
+						// Foreign key constraint
+						if (ex.Number == 547)
+						{
+							MessageBox.Show("Không thể xóa vì dữ liệu đang được sử dụng", "Lỗi ràng buộc");
+						}
+						else
+						{
+							MessageBox.Show($"Có lỗi xảy ra khi xóa dữ liệu: {ex.Message}", "Lỗi ngoại lệ");
+						}
+						return;
                     }
                 }
 
@@ -172,16 +186,11 @@ namespace QLSinhVien.UserControls
 
         private void dgvClasses_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            // 1. Kiểm tra e.RowIndex để tránh lỗi khi người dùng click vào phần Header (tiêu đề cột)
             int rowIndex = e.RowIndex;
 
             if (rowIndex >= 0)
             {
-                // 2. Truy cập vào hàng hiện tại được click
                 DataGridViewRow row = dgvClasses.Rows[rowIndex];
-
-                // 3. Trích xuất dữ liệu từ các ô (Cells)
-                // Bạn có thể dùng tên cột (Column Name) hoặc vị trí (Index)
                 ClassID = row.Cells["ClassID"].Value.ToString();
                 ClassName = row.Cells["ClassName"].Value.ToString();
                 Department = row.Cells["Department"].Value.ToString();
@@ -190,7 +199,6 @@ namespace QLSinhVien.UserControls
 
         private void btnSkip_Click(object sender, EventArgs e)
         {
-            ClearError();
             ClearInput();
         }
     }
