@@ -9,21 +9,12 @@ namespace QLSinhVien.UserControls
     public partial class ucStudents : UserControl
     {
 
-        private string ImagesFolder;
-
         public ucStudents()
         {
             InitializeComponent();
 
             LoadClassesToComboBox();
             LoadStudents();
-
-            ImagesFolder = Path.Combine(Application.StartupPath, "Images");
-
-            if (!Directory.Exists(ImagesFolder))
-            {
-                Directory.CreateDirectory(ImagesFolder);
-            }
         }
 
         private void LoadClassesToComboBox()
@@ -270,7 +261,6 @@ namespace QLSinhVien.UserControls
                 AvatarPath = row.Cells["AvatarPath"].Value.ToString();
                 if (!string.IsNullOrEmpty(AvatarPath))
                 {
-                    // Nhờ đường dẫn tương đối để load ảnh, không có ảnh thì hủy hiển thị
                     if (File.Exists(AvatarPath))
                     {
                         picAvatar.Image?.Dispose();
@@ -295,6 +285,13 @@ namespace QLSinhVien.UserControls
         {
             try
             {
+                string imagesFolder = Path.Combine(Application.StartupPath, "Images");
+
+                if (!Directory.Exists(imagesFolder))
+                {
+                    Directory.CreateDirectory(imagesFolder);
+                }
+
                 if (openFileDialog1.ShowDialog() == DialogResult.OK)
                 {
                     string fullPathSelected = openFileDialog1.FileName;
@@ -307,7 +304,7 @@ namespace QLSinhVien.UserControls
 
                     string fileName = Path.GetFileName(fullPathSelected);
 
-                    string destinationPath = Path.Combine(ImagesFolder, fileName);
+                    string destinationPath = Path.Combine(imagesFolder, fileName);
 
                     File.Copy(fullPathSelected, destinationPath, true);
                 }
