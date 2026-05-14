@@ -264,7 +264,11 @@ namespace QLSinhVien.UserControls
                     if (File.Exists(AvatarPath))
                     {
                         picAvatar.Image?.Dispose();
-                        picAvatar.Image = Image.FromFile(AvatarPath);
+
+                        using (FileStream fs = new FileStream(AvatarPath, FileMode.Open, FileAccess.Read))
+                        {
+                            picAvatar.Image = Image.FromStream(fs);
+                        }
                     }
                     else
                     {
@@ -296,17 +300,23 @@ namespace QLSinhVien.UserControls
                 {
                     string fullPathSelected = openFileDialog1.FileName;
 
-                    picAvatar.Image?.Dispose();
-
-                    picAvatar.Image = Image.FromFile(fullPathSelected);
-
-                    txtAvatarPath.Text = fullPathSelected;
-
                     string fileName = Path.GetFileName(fullPathSelected);
 
                     string destinationPath = Path.Combine(imagesFolder, fileName);
 
+                    // Copy ảnh vào thư mục Images
                     File.Copy(fullPathSelected, destinationPath, true);
+
+                    // Giải phóng ảnh cũ
+                    picAvatar.Image?.Dispose();
+
+                    // Dùng using để tránh lock file ảnh
+                    using (FileStream fs = new FileStream(destinationPath, FileMode.Open, FileAccess.Read))
+                    {
+                        picAvatar.Image = Image.FromStream(fs);
+                    }
+
+                    txtAvatarPath.Text = destinationPath;
                 }
             }
             catch (OutOfMemoryException)

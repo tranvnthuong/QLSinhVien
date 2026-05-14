@@ -51,11 +51,13 @@ namespace QLSinhVien.UserControls
 
         private string StudentID { get => cboStudents.SelectedValue.ToString(); set => cboStudents.SelectedValue = value; }
         private string SubjectID { get => cboSubjects.SelectedValue.ToString(); set => cboSubjects.SelectedValue = value; }
+        private DateTime RegistrationDate { get => dtpRegistrationDate.Value; set => dtpRegistrationDate.Value = value; }
 
         private void ClearInput()
         {
             cboStudents.SelectedIndex = -1;
             cboSubjects.SelectedIndex = -1;
+            RegistrationDate = new DateTime(1900, 10, 10);
         }
 
         private bool ValidateInput()
@@ -81,7 +83,17 @@ namespace QLSinhVien.UserControls
 				errorProvider1.SetError(cboSubjects, string.Empty);
 			}
 
-			return errors == 0;
+            if (RegistrationDate == new DateTime(1900, 10, 10))
+            {
+                errorProvider1.SetError(dtpRegistrationDate, "Vui lòng chọn Ngày đăng ký");
+                errors++;
+            }
+            else
+            {
+                errorProvider1.SetError(dtpRegistrationDate, string.Empty);
+            }
+
+            return errors == 0;
         }
 
         private bool CheckSubjectTypeLimit(int limit, string type)
@@ -122,9 +134,10 @@ namespace QLSinhVien.UserControls
 
                 if (CheckSubjectTypeLimit(30, "Tích hợp")) return;
 
-                int reslut = DB.Execute("INSERT INTO CourseRegistrations(StudentID, SubjectID) VALUES (@StudentID, @SubjectID)",
+                int reslut = DB.Execute("INSERT INTO CourseRegistrations(StudentID, SubjectID, RegistrationDate) VALUES (@StudentID, @SubjectID, @RegistrationDate)",
                     new SqlParameter("@StudentID", StudentID),
-                    new SqlParameter("@SubjectID", SubjectID)
+                    new SqlParameter("@SubjectID", SubjectID),
+                    new SqlParameter("@RegistrationDate", RegistrationDate)
                 );
                 if (reslut > 0)
                 {
@@ -158,9 +171,10 @@ namespace QLSinhVien.UserControls
                     return;
                 }
 
-                int reslut = DB.Execute("UPDATE CourseRegistrations SET SubjectID = @SubjectID WHERE StudentID = @StudentID",
+                int reslut = DB.Execute("UPDATE CourseRegistrations SET SubjectID = @SubjectID, RegistrationDate = @RegistrationDate WHERE StudentID = @StudentID",
                     new SqlParameter("@SubjectID", SubjectID),
-                    new SqlParameter("@StudentID", StudentID)
+                    new SqlParameter("@StudentID", StudentID),
+                    new SqlParameter("@RegistrationDate", RegistrationDate)
                 );
                 if (reslut > 0)
                 {
@@ -233,6 +247,7 @@ namespace QLSinhVien.UserControls
                 DataGridViewRow row = dgvCourseRegistrations.Rows[rowIndex];
                 StudentID = row.Cells["StudentID"].Value.ToString();
                 SubjectID = row.Cells["SubjectID"].Value.ToString();
+                RegistrationDate = DateTime.Parse(row.Cells["RegistrationDate"].Value.ToString());
             }
         }
 
