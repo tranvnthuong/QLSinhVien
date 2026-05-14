@@ -316,7 +316,7 @@ namespace QLSinhVien.UserControls
                         picAvatar.Image = Image.FromStream(fs);
                     }
 
-                    txtAvatarPath.Text = destinationPath;
+                    AvatarPath = destinationPath;
                 }
             }
             catch (OutOfMemoryException)
