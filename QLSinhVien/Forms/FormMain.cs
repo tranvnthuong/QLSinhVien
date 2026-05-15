@@ -1,4 +1,5 @@
-﻿using QLSinhVien.UserControls;
+﻿using QLSinhVien.Forms;
+using QLSinhVien.UserControls;
 using System;
 using System.Drawing;
 using System.Windows.Forms;
@@ -41,12 +42,12 @@ namespace QLSinhVien
 
         private void FormMain_Load(object sender, EventArgs e)
         {
-            //frmLogin formLogin = new frmLogin();
-            //if (formLogin.ShowDialog() == DialogResult.Cancel)
-            //{
-            //    Close();
-            //    return;
-            //}
+            frmLogin formLogin = new frmLogin();
+            if (formLogin.ShowDialog() == DialogResult.Cancel)
+            {
+                Close();
+                return;
+            }
         }
 
         private void tabControl1_DrawItem(object sender, DrawItemEventArgs e)
