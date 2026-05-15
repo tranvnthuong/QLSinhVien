@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data;
 using System.Data.SqlClient;
 using System.Windows.Forms;
 
@@ -253,6 +254,17 @@ namespace QLSinhVien.UserControls
         {
             ClearInput();
             LoadSubjects();
+        }
+        
+        private void txtSearch_TextChanged(object sender, EventArgs e)
+        {
+            string escapeString = txtSearch.Text
+                .Replace("'", "''")
+                .Replace("[", "[[]")
+                .Replace("%", "[%]")
+                .Replace("*", "[*]");
+            (dgvSubjects.DataSource as DataTable).DefaultView
+                .RowFilter = $"SubjectID = '{escapeString}' OR SubjectName LIKE '%{escapeString}%' OR SubjectType LIKE '%{escapeString}%'";
         }
     }
 }

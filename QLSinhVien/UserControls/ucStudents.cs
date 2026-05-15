@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.IO;
@@ -359,6 +360,17 @@ namespace QLSinhVien.UserControls
             {
                 MessageBox.Show($"Có lỗi khi thao tác với File: {ex.Message}", "Lỗi ngoại lệ");
             }
+        }
+
+        private void txtSearch_TextChanged(object sender, EventArgs e)
+        {
+            string escapeString = txtSearch.Text
+                .Replace("'", "''")
+                .Replace("[", "[[]")
+                .Replace("%", "[%]")
+                .Replace("*", "[*]");
+            (dgvStudents.DataSource as DataTable).DefaultView
+                .RowFilter = $"StudentID = '{escapeString}' OR ClassID = '{escapeString}' OR FullName LIKE '%{escapeString}%' OR Gender LIKE '%{escapeString}%' OR ClassName LIKE '%{escapeString}%'";
         }
     }
 }

@@ -47,73 +47,79 @@
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
+            this.tabControl1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tabControl1.Multiline = true;
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.Padding = new System.Drawing.Point(30, 5);
             this.tabControl1.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(1264, 681);
+            this.tabControl1.Size = new System.Drawing.Size(1262, 713);
             this.tabControl1.TabIndex = 0;
             // 
             // tabDashboard
             // 
-            this.tabDashboard.Location = new System.Drawing.Point(4, 37);
+            this.tabDashboard.Location = new System.Drawing.Point(4, 42);
+            this.tabDashboard.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tabDashboard.Name = "tabDashboard";
-            this.tabDashboard.Size = new System.Drawing.Size(1256, 640);
+            this.tabDashboard.Size = new System.Drawing.Size(1254, 667);
             this.tabDashboard.TabIndex = 4;
-            this.tabDashboard.Text = "Giao diện chính";
+            this.tabDashboard.Text = "Tổng quan";
             this.tabDashboard.UseVisualStyleBackColor = true;
             // 
             // tabClasses
             // 
-            this.tabClasses.Location = new System.Drawing.Point(4, 37);
+            this.tabClasses.Location = new System.Drawing.Point(4, 42);
+            this.tabClasses.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tabClasses.Name = "tabClasses";
-            this.tabClasses.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
-            this.tabClasses.Size = new System.Drawing.Size(1172, 599);
+            this.tabClasses.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabClasses.Size = new System.Drawing.Size(1677, 792);
             this.tabClasses.TabIndex = 0;
             this.tabClasses.Text = "Lớp học";
             this.tabClasses.UseVisualStyleBackColor = true;
             // 
             // tabSubjects
             // 
-            this.tabSubjects.Location = new System.Drawing.Point(4, 37);
+            this.tabSubjects.Location = new System.Drawing.Point(4, 42);
+            this.tabSubjects.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tabSubjects.Name = "tabSubjects";
-            this.tabSubjects.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
-            this.tabSubjects.Size = new System.Drawing.Size(1172, 599);
+            this.tabSubjects.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabSubjects.Size = new System.Drawing.Size(1677, 792);
             this.tabSubjects.TabIndex = 1;
             this.tabSubjects.Text = "Môn học";
             this.tabSubjects.UseVisualStyleBackColor = true;
             // 
             // tabStudents
             // 
-            this.tabStudents.Location = new System.Drawing.Point(4, 37);
+            this.tabStudents.Location = new System.Drawing.Point(4, 42);
+            this.tabStudents.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tabStudents.Name = "tabStudents";
-            this.tabStudents.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
-            this.tabStudents.Size = new System.Drawing.Size(1172, 599);
+            this.tabStudents.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabStudents.Size = new System.Drawing.Size(1677, 792);
             this.tabStudents.TabIndex = 2;
             this.tabStudents.Text = "Hồ sơ sinh viên";
             this.tabStudents.UseVisualStyleBackColor = true;
             // 
             // tabCourseRegistration
             // 
-            this.tabCourseRegistration.Location = new System.Drawing.Point(4, 37);
+            this.tabCourseRegistration.Location = new System.Drawing.Point(4, 42);
+            this.tabCourseRegistration.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tabCourseRegistration.Name = "tabCourseRegistration";
-            this.tabCourseRegistration.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
-            this.tabCourseRegistration.Size = new System.Drawing.Size(1172, 599);
+            this.tabCourseRegistration.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabCourseRegistration.Size = new System.Drawing.Size(1677, 792);
             this.tabCourseRegistration.TabIndex = 3;
             this.tabCourseRegistration.Text = "Đăng ký môn Học";
             this.tabCourseRegistration.UseVisualStyleBackColor = true;
             // 
             // FormMain
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1264, 681);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+            this.ClientSize = new System.Drawing.Size(1262, 713);
             this.Controls.Add(this.tabControl1);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(1280, 720);
+            this.MaximumSize = new System.Drawing.Size(1280, 760);
             this.MinimizeBox = false;
-            this.MinimumSize = new System.Drawing.Size(1280, 720);
+            this.MinimumSize = new System.Drawing.Size(1280, 760);
             this.Name = "FormMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Quản Lý sinh viên";

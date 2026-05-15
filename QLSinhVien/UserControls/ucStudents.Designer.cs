@@ -29,9 +29,6 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.btnDelete = new System.Windows.Forms.Button();
-            this.btnUpdate = new System.Windows.Forms.Button();
-            this.btnCreate = new System.Windows.Forms.Button();
             this.label8 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -41,7 +38,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.label2 = new System.Windows.Forms.Label();
-            this.btnSkip = new System.Windows.Forms.Button();
             this.dtpDateOfBirth = new System.Windows.Forms.DateTimePicker();
             this.cboGender = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
@@ -50,51 +46,26 @@
             this.txtAvatarPath = new System.Windows.Forms.TextBox();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.picAvatar = new System.Windows.Forms.PictureBox();
+            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.btnCreate = new System.Windows.Forms.Button();
+            this.btnUpdate = new System.Windows.Forms.Button();
+            this.btnDelete = new System.Windows.Forms.Button();
+            this.btnSkip = new System.Windows.Forms.Button();
+            this.label7 = new System.Windows.Forms.Label();
+            this.txtSearch = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvStudents)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picAvatar)).BeginInit();
+            this.flowLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // btnDelete
-            // 
-            this.btnDelete.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDelete.Location = new System.Drawing.Point(344, 183);
-            this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(112, 34);
-            this.btnDelete.TabIndex = 9;
-            this.btnDelete.Text = "Xóa";
-            this.btnDelete.UseVisualStyleBackColor = true;
-            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
-            // 
-            // btnUpdate
-            // 
-            this.btnUpdate.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnUpdate.Location = new System.Drawing.Point(202, 183);
-            this.btnUpdate.Name = "btnUpdate";
-            this.btnUpdate.Size = new System.Drawing.Size(112, 34);
-            this.btnUpdate.TabIndex = 8;
-            this.btnUpdate.Text = "Cập nhật";
-            this.btnUpdate.UseVisualStyleBackColor = true;
-            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
-            // 
-            // btnCreate
-            // 
-            this.btnCreate.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCreate.Location = new System.Drawing.Point(61, 183);
-            this.btnCreate.Name = "btnCreate";
-            this.btnCreate.Size = new System.Drawing.Size(112, 34);
-            this.btnCreate.TabIndex = 7;
-            this.btnCreate.Text = "Tạo mới";
-            this.btnCreate.UseVisualStyleBackColor = true;
-            this.btnCreate.Click += new System.EventHandler(this.btnCreate_Click);
             // 
             // label8
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(767, 85);
+            this.label8.Location = new System.Drawing.Point(803, 56);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(89, 25);
+            this.label8.Size = new System.Drawing.Size(110, 31);
             this.label8.TabIndex = 16;
             this.label8.Text = "Lớp học";
             // 
@@ -102,9 +73,9 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(192, 85);
+            this.label5.Location = new System.Drawing.Point(209, 58);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(144, 25);
+            this.label5.Size = new System.Drawing.Size(179, 31);
             this.label5.TabIndex = 13;
             this.label5.Text = "Tên Sinh viên";
             // 
@@ -112,26 +83,26 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(21, 85);
+            this.label3.Location = new System.Drawing.Point(21, 58);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(137, 25);
+            this.label3.Size = new System.Drawing.Size(169, 31);
             this.label3.TabIndex = 12;
             this.label3.Text = "Mã Sinh viên";
             // 
             // txtFullName
             // 
             this.txtFullName.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtFullName.Location = new System.Drawing.Point(195, 112);
+            this.txtFullName.Location = new System.Drawing.Point(208, 92);
             this.txtFullName.Name = "txtFullName";
-            this.txtFullName.Size = new System.Drawing.Size(213, 31);
+            this.txtFullName.Size = new System.Drawing.Size(213, 37);
             this.txtFullName.TabIndex = 1;
             // 
             // txtStudentID
             // 
             this.txtStudentID.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtStudentID.Location = new System.Drawing.Point(25, 112);
+            this.txtStudentID.Location = new System.Drawing.Point(25, 92);
             this.txtStudentID.Name = "txtStudentID";
-            this.txtStudentID.Size = new System.Drawing.Size(130, 31);
+            this.txtStudentID.Size = new System.Drawing.Size(130, 37);
             this.txtStudentID.TabIndex = 0;
             // 
             // dgvStudents
@@ -143,13 +114,13 @@
             this.dgvStudents.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvStudents.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvStudents.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.dgvStudents.Location = new System.Drawing.Point(0, 284);
+            this.dgvStudents.Location = new System.Drawing.Point(0, 234);
             this.dgvStudents.Name = "dgvStudents";
             this.dgvStudents.ReadOnly = true;
             this.dgvStudents.RowHeadersVisible = false;
             this.dgvStudents.RowHeadersWidth = 51;
             this.dgvStudents.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvStudents.Size = new System.Drawing.Size(1280, 476);
+            this.dgvStudents.Size = new System.Drawing.Size(1280, 526);
             this.dgvStudents.TabIndex = 6;
             this.dgvStudents.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvStudents_CellClick);
             // 
@@ -159,7 +130,7 @@
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(0, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(1280, 40);
+            this.label1.Size = new System.Drawing.Size(1280, 50);
             this.label1.TabIndex = 17;
             this.label1.Text = "Quản lý Sinh viên";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -173,31 +144,20 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(441, 85);
+            this.label2.Location = new System.Drawing.Point(452, 58);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(108, 25);
+            this.label2.Size = new System.Drawing.Size(135, 31);
             this.label2.TabIndex = 14;
             this.label2.Text = "Ngày sinh";
-            // 
-            // btnSkip
-            // 
-            this.btnSkip.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSkip.Location = new System.Drawing.Point(485, 183);
-            this.btnSkip.Name = "btnSkip";
-            this.btnSkip.Size = new System.Drawing.Size(112, 34);
-            this.btnSkip.TabIndex = 10;
-            this.btnSkip.Text = "Bỏ qua";
-            this.btnSkip.UseVisualStyleBackColor = true;
-            this.btnSkip.Click += new System.EventHandler(this.btnSkip_Click);
             // 
             // dtpDateOfBirth
             // 
             this.dtpDateOfBirth.CalendarFont = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtpDateOfBirth.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtpDateOfBirth.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpDateOfBirth.Location = new System.Drawing.Point(445, 112);
+            this.dtpDateOfBirth.Location = new System.Drawing.Point(458, 92);
             this.dtpDateOfBirth.Name = "dtpDateOfBirth";
-            this.dtpDateOfBirth.Size = new System.Drawing.Size(135, 31);
+            this.dtpDateOfBirth.Size = new System.Drawing.Size(169, 37);
             this.dtpDateOfBirth.TabIndex = 2;
             this.dtpDateOfBirth.Value = new System.DateTime(1900, 10, 10, 0, 0, 0, 0);
             // 
@@ -209,18 +169,18 @@
             this.cboGender.Items.AddRange(new object[] {
             "Nữ",
             "Nam"});
-            this.cboGender.Location = new System.Drawing.Point(620, 110);
+            this.cboGender.Location = new System.Drawing.Point(661, 90);
             this.cboGender.Name = "cboGender";
-            this.cboGender.Size = new System.Drawing.Size(115, 33);
+            this.cboGender.Size = new System.Drawing.Size(115, 38);
             this.cboGender.TabIndex = 3;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(616, 85);
+            this.label4.Location = new System.Drawing.Point(655, 56);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(91, 25);
+            this.label4.Size = new System.Drawing.Size(113, 31);
             this.label4.TabIndex = 15;
             this.label4.Text = "Giới tính";
             // 
@@ -229,28 +189,28 @@
             this.cboClasses.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboClasses.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboClasses.FormattingEnabled = true;
-            this.cboClasses.Location = new System.Drawing.Point(770, 110);
+            this.cboClasses.Location = new System.Drawing.Point(806, 90);
             this.cboClasses.Name = "cboClasses";
-            this.cboClasses.Size = new System.Drawing.Size(276, 33);
+            this.cboClasses.Size = new System.Drawing.Size(276, 38);
             this.cboClasses.TabIndex = 4;
             // 
             // label6
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(682, 188);
+            this.label6.Location = new System.Drawing.Point(800, 129);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(159, 25);
+            this.label6.Size = new System.Drawing.Size(198, 31);
             this.label6.TabIndex = 11;
             this.label6.Text = "Đường dẫn ảnh";
             // 
             // txtAvatarPath
             // 
             this.txtAvatarPath.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtAvatarPath.Location = new System.Drawing.Point(847, 185);
+            this.txtAvatarPath.Location = new System.Drawing.Point(806, 160);
             this.txtAvatarPath.Name = "txtAvatarPath";
             this.txtAvatarPath.ReadOnly = true;
-            this.txtAvatarPath.Size = new System.Drawing.Size(199, 31);
+            this.txtAvatarPath.Size = new System.Drawing.Size(273, 37);
             this.txtAvatarPath.TabIndex = 5;
             this.txtAvatarPath.Enter += new System.EventHandler(this.txtAvatarPath_Enter);
             // 
@@ -260,26 +220,103 @@
             // 
             // picAvatar
             // 
-            this.picAvatar.Location = new System.Drawing.Point(1078, 112);
+            this.picAvatar.Location = new System.Drawing.Point(1106, 95);
             this.picAvatar.Margin = new System.Windows.Forms.Padding(2);
             this.picAvatar.Name = "picAvatar";
-            this.picAvatar.Size = new System.Drawing.Size(147, 142);
+            this.picAvatar.Size = new System.Drawing.Size(131, 131);
             this.picAvatar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.picAvatar.TabIndex = 19;
             this.picAvatar.TabStop = false;
             this.picAvatar.Click += new System.EventHandler(this.txtAvatarPath_Enter);
             // 
+            // flowLayoutPanel1
+            // 
+            this.flowLayoutPanel1.Controls.Add(this.btnCreate);
+            this.flowLayoutPanel1.Controls.Add(this.btnUpdate);
+            this.flowLayoutPanel1.Controls.Add(this.btnDelete);
+            this.flowLayoutPanel1.Controls.Add(this.btnSkip);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(42, 129);
+            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(726, 62);
+            this.flowLayoutPanel1.TabIndex = 20;
+            // 
+            // btnCreate
+            // 
+            this.btnCreate.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCreate.Location = new System.Drawing.Point(10, 10);
+            this.btnCreate.Margin = new System.Windows.Forms.Padding(10);
+            this.btnCreate.Name = "btnCreate";
+            this.btnCreate.Size = new System.Drawing.Size(158, 44);
+            this.btnCreate.TabIndex = 4;
+            this.btnCreate.Text = "Tạo mới";
+            this.btnCreate.UseVisualStyleBackColor = true;
+            this.btnCreate.Click += new System.EventHandler(this.btnCreate_Click);
+            // 
+            // btnUpdate
+            // 
+            this.btnUpdate.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnUpdate.Location = new System.Drawing.Point(188, 10);
+            this.btnUpdate.Margin = new System.Windows.Forms.Padding(10);
+            this.btnUpdate.Name = "btnUpdate";
+            this.btnUpdate.Size = new System.Drawing.Size(158, 44);
+            this.btnUpdate.TabIndex = 5;
+            this.btnUpdate.Text = "Cập nhật";
+            this.btnUpdate.UseVisualStyleBackColor = true;
+            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
+            // 
+            // btnDelete
+            // 
+            this.btnDelete.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDelete.Location = new System.Drawing.Point(366, 10);
+            this.btnDelete.Margin = new System.Windows.Forms.Padding(10);
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(158, 44);
+            this.btnDelete.TabIndex = 6;
+            this.btnDelete.Text = "Xóa";
+            this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
+            // 
+            // btnSkip
+            // 
+            this.btnSkip.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSkip.Location = new System.Drawing.Point(544, 10);
+            this.btnSkip.Margin = new System.Windows.Forms.Padding(10);
+            this.btnSkip.Name = "btnSkip";
+            this.btnSkip.Size = new System.Drawing.Size(158, 44);
+            this.btnSkip.TabIndex = 7;
+            this.btnSkip.Text = "Bỏ qua";
+            this.btnSkip.UseVisualStyleBackColor = true;
+            this.btnSkip.Click += new System.EventHandler(this.btnSkip_Click);
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(2, 195);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(123, 31);
+            this.label7.TabIndex = 22;
+            this.label7.Text = "Tìm kiếm";
+            // 
+            // txtSearch
+            // 
+            this.txtSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtSearch.Location = new System.Drawing.Point(118, 191);
+            this.txtSearch.Name = "txtSearch";
+            this.txtSearch.Size = new System.Drawing.Size(209, 37);
+            this.txtSearch.TabIndex = 21;
+            this.txtSearch.TextChanged += new System.EventHandler(this.txtSearch_TextChanged);
+            // 
             // ucStudents
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.txtSearch);
+            this.Controls.Add(this.flowLayoutPanel1);
             this.Controls.Add(this.picAvatar);
             this.Controls.Add(this.cboClasses);
             this.Controls.Add(this.cboGender);
             this.Controls.Add(this.dtpDateOfBirth);
-            this.Controls.Add(this.btnSkip);
-            this.Controls.Add(this.btnDelete);
-            this.Controls.Add(this.btnUpdate);
-            this.Controls.Add(this.btnCreate);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label4);
@@ -299,16 +336,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvStudents)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picAvatar)).EndInit();
+            this.flowLayoutPanel1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.Button btnDelete;
-        private System.Windows.Forms.Button btnUpdate;
-        private System.Windows.Forms.Button btnCreate;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label3;
@@ -318,7 +352,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ErrorProvider errorProvider1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Button btnSkip;
         private System.Windows.Forms.DateTimePicker dtpDateOfBirth;
         private System.Windows.Forms.ComboBox cboGender;
         private System.Windows.Forms.Label label4;
@@ -327,5 +360,12 @@
         private System.Windows.Forms.TextBox txtAvatarPath;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.PictureBox picAvatar;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
+        private System.Windows.Forms.Button btnCreate;
+        private System.Windows.Forms.Button btnUpdate;
+        private System.Windows.Forms.Button btnDelete;
+        private System.Windows.Forms.Button btnSkip;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.TextBox txtSearch;
     }
 }

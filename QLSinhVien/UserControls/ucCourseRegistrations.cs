@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data;
 using System.Data.SqlClient;
 using System.Windows.Forms;
 
@@ -257,6 +258,17 @@ namespace QLSinhVien.UserControls
             LoadSubjectsToComboBox();
             ClearInput();
             LoadCourseRegistrations();
+        }
+
+        private void txtSearch_TextChanged(object sender, EventArgs e)
+        {
+            string escapeString = txtSearch.Text
+                .Replace("'", "''")
+                .Replace("[", "[[]")
+                .Replace("%", "[%]")
+                .Replace("*", "[*]");
+            (dgvCourseRegistrations.DataSource as DataTable).DefaultView
+                .RowFilter = $"StudentID = '{escapeString}' OR SubjectID = '{escapeString}' OR FullName LIKE '%{escapeString}%' OR SubjectName LIKE '%{escapeString}%'";
         }
     }
 }

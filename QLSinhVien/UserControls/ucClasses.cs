@@ -25,7 +25,6 @@ namespace QLSinhVien.UserControls
         private string ClassID { get => txtClassID.Text; set => txtClassID.Text = value; }
         private string ClassName { get => txtClassName.Text; set => txtClassName.Text = value; }
         private string Department { get => txtDepartment.Text; set => txtDepartment.Text = value; }
-        private string SearchBox { get => txtSearchBox.Text; set => txtSearchBox.Text = value;  }
 
         private void ClearInput()
         {
@@ -205,9 +204,15 @@ namespace QLSinhVien.UserControls
             LoadClasses();
         }
 
-        private void txtSearchBox_TextChanged(object sender, EventArgs e)
+        private void txtSearch_TextChanged(object sender, EventArgs e)
         {
-            (dgvClasses.DataSource as DataTable).DefaultView.RowFilter = $"ClassName LIKE '%{SearchBox}%'";
+            string escapeString = txtSearch.Text
+                .Replace("'", "''")
+                .Replace("[", "[[]")
+                .Replace("%", "[%]")
+                .Replace("*", "[*]");
+            (dgvClasses.DataSource as DataTable).DefaultView
+                .RowFilter = $"ClassID = '{escapeString}' OR ClassName LIKE '%{escapeString}%' OR Department LIKE '%{escapeString}%'";
         }
     }
 }
