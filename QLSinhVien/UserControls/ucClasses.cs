@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data;
 using System.Data.SqlClient;
 using System.Windows.Forms;
 
@@ -24,6 +25,7 @@ namespace QLSinhVien.UserControls
         private string ClassID { get => txtClassID.Text; set => txtClassID.Text = value; }
         private string ClassName { get => txtClassName.Text; set => txtClassName.Text = value; }
         private string Department { get => txtDepartment.Text; set => txtDepartment.Text = value; }
+        private string SearchBox { get => txtSearchBox.Text; set => txtSearchBox.Text = value;  }
 
         private void ClearInput()
         {
@@ -200,6 +202,12 @@ namespace QLSinhVien.UserControls
         private void btnSkip_Click(object sender, EventArgs e)
         {
             ClearInput();
+            LoadClasses();
+        }
+
+        private void txtSearchBox_TextChanged(object sender, EventArgs e)
+        {
+            (dgvClasses.DataSource as DataTable).DefaultView.RowFilter = $"ClassName LIKE '%{SearchBox}%'";
         }
     }
 }

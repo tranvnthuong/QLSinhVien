@@ -252,6 +252,7 @@ namespace QLSinhVien.UserControls
         private void btnSkip_Click(object sender, EventArgs e)
         {
             ClearInput();
+            LoadSubjects();
         }
     }
 }

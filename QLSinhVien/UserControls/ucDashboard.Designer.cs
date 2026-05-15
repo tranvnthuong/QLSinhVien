@@ -43,7 +43,7 @@
             // 
             this.lblCountCourseRegistrations.AutoSize = true;
             this.lblCountCourseRegistrations.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCountCourseRegistrations.Location = new System.Drawing.Point(394, 357);
+            this.lblCountCourseRegistrations.Location = new System.Drawing.Point(560, 339);
             this.lblCountCourseRegistrations.Name = "lblCountCourseRegistrations";
             this.lblCountCourseRegistrations.Size = new System.Drawing.Size(247, 24);
             this.lblCountCourseRegistrations.TabIndex = 1;
@@ -53,7 +53,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(85, 357);
+            this.label6.Location = new System.Drawing.Point(251, 339);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(304, 24);
             this.label6.TabIndex = 2;
@@ -63,7 +63,7 @@
             // 
             this.lblCountStudents.AutoSize = true;
             this.lblCountStudents.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCountStudents.Location = new System.Drawing.Point(256, 294);
+            this.lblCountStudents.Location = new System.Drawing.Point(422, 276);
             this.lblCountStudents.Name = "lblCountStudents";
             this.lblCountStudents.Size = new System.Drawing.Size(152, 24);
             this.lblCountStudents.TabIndex = 3;
@@ -73,7 +73,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(85, 294);
+            this.label4.Location = new System.Drawing.Point(251, 276);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(165, 24);
             this.label4.TabIndex = 4;
@@ -83,7 +83,7 @@
             // 
             this.lblCountSubjects.AutoSize = true;
             this.lblCountSubjects.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCountSubjects.Location = new System.Drawing.Point(256, 238);
+            this.lblCountSubjects.Location = new System.Drawing.Point(422, 220);
             this.lblCountSubjects.Name = "lblCountSubjects";
             this.lblCountSubjects.Size = new System.Drawing.Size(151, 24);
             this.lblCountSubjects.TabIndex = 5;
@@ -93,7 +93,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(85, 238);
+            this.label2.Location = new System.Drawing.Point(251, 220);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(165, 24);
             this.label2.TabIndex = 6;
@@ -103,7 +103,7 @@
             // 
             this.lblCountClasses.AutoSize = true;
             this.lblCountClasses.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCountClasses.Location = new System.Drawing.Point(243, 179);
+            this.lblCountClasses.Location = new System.Drawing.Point(409, 161);
             this.lblCountClasses.Name = "lblCountClasses";
             this.lblCountClasses.Size = new System.Drawing.Size(144, 24);
             this.lblCountClasses.TabIndex = 7;
@@ -113,7 +113,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(85, 179);
+            this.label1.Location = new System.Drawing.Point(251, 161);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(153, 24);
             this.label1.TabIndex = 8;
@@ -132,8 +132,7 @@
             // 
             // ucDashboard
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.Controls.Add(this.label3);
             this.Controls.Add(this.lblCountCourseRegistrations);
             this.Controls.Add(this.label6);

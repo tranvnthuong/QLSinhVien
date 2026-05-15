@@ -17,6 +17,34 @@ namespace QLSinhVien.UserControls
             LoadStudents();
         }
 
+        private string SaveImage(string fullPath)
+        {
+            string imagesFolder = Path.Combine(Application.StartupPath, "Images");
+
+            if (!Directory.Exists(imagesFolder))
+            {
+                Directory.CreateDirectory(imagesFolder);
+            }
+
+            string fileName = Path.GetFileName(fullPath);
+
+            string destinationPath = Path.Combine(imagesFolder, fileName);
+
+            try
+            {
+                if (!fullPath.Equals(destinationPath, StringComparison.OrdinalIgnoreCase))
+                {
+                    File.Copy(fullPath, destinationPath, true);
+                }
+            }
+            catch
+            {
+            }
+
+            return @"Images\" + fileName;
+
+        }
+
         private void LoadClassesToComboBox()
         {
             cboClasses.DataSource = DB.Query("SELECT * FROM Classes");
@@ -34,6 +62,7 @@ namespace QLSinhVien.UserControls
                     WHEN s.Gender = 1 THEN N'Nam'
                 END AS Gender,
                 s.DateOfBirth,
+                s.ClassID,
                 c.ClassName,
                 s.AvatarPath
             FROM Students s
@@ -45,8 +74,9 @@ namespace QLSinhVien.UserControls
             dgvStudents.Columns["FullName"].HeaderText = "Tên Sinh viên";
             dgvStudents.Columns["DateOfBirth"].HeaderText = "Ngày sinh";
             dgvStudents.Columns["Gender"].HeaderText = "Giới tính";
-            dgvStudents.Columns["AvatarPath"].HeaderText = "Ảnh đại diện";
+            dgvStudents.Columns["ClassID"].HeaderText = "Mã Lớp học";
             dgvStudents.Columns["ClassName"].HeaderText = "Tên Lớp học";
+            dgvStudents.Columns["AvatarPath"].HeaderText = "Ảnh đại diện";
         }
 
         private string StudentID { get => txtStudentID.Text; set => txtStudentID.Text = value; }
@@ -61,7 +91,7 @@ namespace QLSinhVien.UserControls
             StudentID = string.Empty;
             FullName = string.Empty;
             DateOfBirth = new DateTime(1900, 10, 10);
-            Gender = 0;
+            Gender = -1;
             cboClasses.SelectedIndex = -1;
             AvatarPath = string.Empty;
             picAvatar.Image = null;
@@ -101,6 +131,16 @@ namespace QLSinhVien.UserControls
                 errorProvider1.SetError(dtpDateOfBirth, string.Empty);
             }
 
+            if (Gender == -1)
+            {
+                errorProvider1.SetError(cboGender, "Vui lòng chọn giới tính");
+                errors++;
+            }
+            else
+            {
+                errorProvider1.SetError(cboGender, string.Empty);
+            }
+
             if (cboClasses.SelectedIndex == -1)
             {
                 errorProvider1.SetError(cboClasses, "Vui lòng chọn lớp học");
@@ -135,7 +175,7 @@ namespace QLSinhVien.UserControls
                 }
 
                 // Đường dẫn tương đối + tên file
-                string relativePath = @"Images\" + Path.GetFileName(AvatarPath);
+                string relativePath = SaveImage(AvatarPath);
 
                 int reslut = DB.Execute("INSERT INTO Students(StudentID, FullName, DateOfBirth, Gender, AvatarPath, ClassID) VALUES (@StudentID, @FullName, @DateOfBirth, @Gender, @AvatarPath, @ClassID)",
                     new SqlParameter("@StudentID", StudentID),
@@ -175,7 +215,7 @@ namespace QLSinhVien.UserControls
                     return;
                 }
 
-                string relativePath = @"Images\" + Path.GetFileName(AvatarPath);
+                string relativePath = SaveImage(AvatarPath);
 
                 int reslut = DB.Execute("UPDATE Students SET FullName = @FullName, DateOfBirth = @DateOfBirth, Gender = @Gender, AvatarPath = @AvatarPath, ClassID = @ClassID WHERE StudentID = @StudentID",
                     new SqlParameter("@StudentID", StudentID),
@@ -258,6 +298,7 @@ namespace QLSinhVien.UserControls
                 FullName = row.Cells["FullName"].Value.ToString();
                 DateOfBirth = DateTime.Parse(row.Cells["DateOfBirth"].Value.ToString());
                 Gender = row.Cells["Gender"].Value.ToString() == "Nữ" ? 0 : 1;
+                ClassID = row.Cells["ClassID"].Value.ToString();
                 AvatarPath = row.Cells["AvatarPath"].Value.ToString();
                 if (!string.IsNullOrEmpty(AvatarPath))
                 {
@@ -267,7 +308,7 @@ namespace QLSinhVien.UserControls
 
                         using (FileStream fs = new FileStream(AvatarPath, FileMode.Open, FileAccess.Read))
                         {
-                            picAvatar.Image = Image.FromStream(fs);
+                              picAvatar.Image = Image.FromStream(fs);
                         }
                     }
                     else
@@ -283,55 +324,38 @@ namespace QLSinhVien.UserControls
         {
             LoadClassesToComboBox();
             ClearInput();
+            LoadStudents();
         }
 
         private void txtAvatarPath_Enter(object sender, EventArgs e)
         {
+            openFileDialog1.Filter = "Image Files|*.jpg;*.jpeg;*.png;*.bmp";
             try
             {
-                string imagesFolder = Path.Combine(Application.StartupPath, "Images");
-
-                if (!Directory.Exists(imagesFolder))
-                {
-                    Directory.CreateDirectory(imagesFolder);
-                }
-
                 if (openFileDialog1.ShowDialog() == DialogResult.OK)
                 {
-                    string fullPathSelected = openFileDialog1.FileName;
+                    string fullPath = openFileDialog1.FileName;
 
-                    string fileName = Path.GetFileName(fullPathSelected);
-
-                    string destinationPath = Path.Combine(imagesFolder, fileName);
-
-                    // Copy ảnh vào thư mục Images
-                    File.Copy(fullPathSelected, destinationPath, true);
+                    FileInfo fi = new FileInfo(fullPath);
+                    if (fi.Exists && fi.Length > 2_000_000)
+                    {
+                        MessageBox.Show("Ảnh không được phép vượt quá 2MB");
+                        return;
+                    }
 
                     // Giải phóng ảnh cũ
                     picAvatar.Image?.Dispose();
 
                     // Dùng using để tránh lock file ảnh
-                    using (FileStream fs = new FileStream(destinationPath, FileMode.Open, FileAccess.Read))
+                    using (FileStream fs = new FileStream(fullPath, FileMode.Open, FileAccess.Read))
                     {
                         picAvatar.Image = Image.FromStream(fs);
                     }
 
-                    AvatarPath = destinationPath;
+                    AvatarPath = fullPath;
                 }
             }
-            catch (OutOfMemoryException)
-            {
-                MessageBox.Show("Kích thước ảnh quá lớn", "Lỗi ngoại lệ");
-            }
-            catch (FileNotFoundException)
-            {
-                MessageBox.Show("Không tìm thấy File", "Lỗi ngoại lệ");
-            }
-            catch (DirectoryNotFoundException)
-            {
-                MessageBox.Show("Không tìm thấy Folder", "Lỗi ngoại lệ");
-            }
-            catch (IOException ex)
+            catch (Exception ex)
             {
                 MessageBox.Show($"Có lỗi khi thao tác với File: {ex.Message}", "Lỗi ngoại lệ");
             }

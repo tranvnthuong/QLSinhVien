@@ -256,6 +256,7 @@ namespace QLSinhVien.UserControls
             LoadStudentsToComboBox();
             LoadSubjectsToComboBox();
             ClearInput();
+            LoadCourseRegistrations();
         }
     }
 }
